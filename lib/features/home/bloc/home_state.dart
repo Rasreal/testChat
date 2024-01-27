@@ -10,8 +10,8 @@ abstract class HomeActionState extends HomeState {}
 class HomeLoadingState extends HomeState {}
 
 class HomeLoadedSuccessState extends HomeState {
-  //final List<ProductDataModel> products;
-  //HomeLoadedSuccessState(this.products);
+  final List<HomeChatsModel> chats;
+  HomeLoadedSuccessState(this.chats);
 }
 
 class HomeLoadedErrorState extends HomeState {}
