@@ -20,6 +20,7 @@ class ChatTile extends StatelessWidget {
                 Text(
                   "${chatInfo.fName} ${chatInfo.lName}",
                   style: nameStyle,
+
                 )
               ],
             )
