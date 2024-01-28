@@ -24,7 +24,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             fName: e['firstName'],
             lName: e['lastName'],
             lastMessagedMe: e['lastMessagedMe'],
-            lastMessaged: e['lastMessaged'],
+            lastMessaged: DateTime.parse(e['lastMessaged']),
             imageUrl: e['imageUrl'])).toList()));
   }
   FutureOr<void> homeChatClickNavEvent(HomeChatClickNavEvent event, Emitter<HomeState> emit) {

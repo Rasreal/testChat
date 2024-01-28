@@ -6,7 +6,7 @@ class ChatsData {
       'lastName': 'Doe',
       'lastMessagedMe': true,
       'lastMessaged': '2024-01-27T10:30:00',
-      'imageUrl': 'https://example.com/john-doe-image.jpg',
+      'imageUrl': 'https://e0.pxfuel.com/wallpapers/95/699/desktop-wallpaper-happy-naruto-naruto-smiling.jpg',
     },
     {
       'id': '2',
