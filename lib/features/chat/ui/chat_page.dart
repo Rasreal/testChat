@@ -6,9 +6,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:test_chat/features/chat/ui/message_input.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 import '../../../data/chat_messages_data.dart';
 import '../../../functions/functions.dart';
+import '../../../styles/text_styles.dart';
 import '../model/chat_message_model.dart';
 
 class ChatPage extends StatefulWidget {
@@ -25,26 +27,55 @@ class _ChatPageState extends State<ChatPage> {
 
   TextEditingController _messageController = TextEditingController();
   ImagePicker _imagePicker = ImagePicker();
+  AudioPlayer _audioPlayer = AudioPlayer();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _messages = chatData[widget.chatID];
+    _messages?.sort((a, b) => b.timestamp.compareTo(a.timestamp));
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat App'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.pop(context);
+          },
 
-        actions: [
-          IconButton(
-            icon: Icon(Icons.info),
-            onPressed: () {
-              // Add your action here
-            },
-          ),
-        ],
+        ),
+        title:Row(
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              child: CircleAvatar(
+                backgroundColor: Colors.pinkAccent,
+                child: Text("ФИ"),
+              ),
+            ),
+            const SizedBox(
+              width: 15,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "ФИ",
+                  style: nameStyle.copyWith(fontSize: 16),
+                ),
+                Text(
+                  "В сети",
+                  style: msgMe.copyWith(fontSize: 12),
+                ),
+              ],
+            ),
+          ],
+        ),
+
       ),
       body: Column(
         children: [
@@ -70,7 +101,7 @@ class _ChatPageState extends State<ChatPage> {
                         child: Container(
                           padding: EdgeInsets.all(10.0),
                           decoration: BoxDecoration(
-                            color: isMyMessage ? Colors.blue : Colors.grey[200],
+                            color: isMyMessage ? Color(0xFF3CED78) : Colors.grey[200],
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                           child: Column(
@@ -91,8 +122,8 @@ class _ChatPageState extends State<ChatPage> {
                               if (message.image == null)
                                 Text(
                                   message.text,
-                                  style: TextStyle(
-                                    color: isMyMessage ? Colors.white : Colors.black,
+                                  style: defStyle.copyWith(
+                                    color: isMyMessage ? Color(0xFF00521C) : Color(0xFF2B333E),
                                     fontSize: 16.0,
                                   ),
                                 ),
@@ -101,7 +132,7 @@ class _ChatPageState extends State<ChatPage> {
                                 '${message.timestamp.hour}:${message.timestamp.minute}',
                                 style: TextStyle(
                                   fontSize: 12.0,
-                                  color: isMyMessage ? Colors.white70 : Colors.grey[600],
+                                  color: isMyMessage ? Color(0xFF00521C) : Colors.grey[600],
                                 ),
                               ),
                             ],
@@ -143,11 +174,12 @@ class _ChatPageState extends State<ChatPage> {
                 child: TextField(
                   controller: _messageController,
                   decoration: InputDecoration(
-                    hintText: 'Type your message...',
+                    hintText: 'Сообщение',
                     border: InputBorder.none,
                   ),
                 ),
               ),
+
             ),
           ),
           SizedBox(width: 8.0),
@@ -203,6 +235,15 @@ class _ChatPageState extends State<ChatPage> {
       });
     }
   }
+
+  // Future<String> _saveAudioLocally(String fileName, File audioFile) async {
+  //   Directory appDirectory = await getApplicationDocumentsDirectory();
+  //   String appPath = appDirectory.path;
+  //   String audioFilePath = '$appPath/$fileName';
+  //
+  //   await audioFile.copy(audioFilePath);
+  //   return audioFilePath;
+  // }
 
   Widget _buildDateDivider(DateTime timestamp) {
     String formattedDate = DateFormat.yMd().format(timestamp);

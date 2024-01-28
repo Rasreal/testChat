@@ -19,6 +19,11 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.1+1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.9+1" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.1+1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider-2.1.2" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.2.2" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_foundation-2.3.2" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/audioplayers-5.2.1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/audioplayers_web-4.1.0" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

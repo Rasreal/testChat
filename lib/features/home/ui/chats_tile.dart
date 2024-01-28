@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_chat/data/chat_messages_data.dart';
 import 'package:test_chat/features/chat/ui/chat_page.dart';
 import 'package:test_chat/features/home/model/home_chats_model.dart';
 import 'package:test_chat/styles/text_styles.dart';
@@ -41,10 +42,10 @@ class ChatTile extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        if(chatInfo.lastMessagedMe)
+                        if(getLatestUserId(chatData, chatInfo.chatId!) == "777")
                           Text("Вы: ", style: msgMe,),
 
-                        Text("Last Message here", style: msgMe.copyWith(color: Colors.grey.shade500),),
+                        Text(getLatestMessage(chatData!, chatInfo.chatId!)?.text ?? "", style: msgMe.copyWith(color: Colors.grey.shade500),),
                       ],
                     )
                   ],
