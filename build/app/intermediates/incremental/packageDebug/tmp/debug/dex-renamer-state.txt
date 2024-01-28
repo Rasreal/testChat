@@ -1,4 +1,4 @@
-#Sun Jan 28 15:34:52 ALMT 2024
+#Mon Jan 29 01:31:28 ALMT 2024
 base.0=/Users/yersultan/developer/work_projects/testChat/testChat/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

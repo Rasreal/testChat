@@ -5,6 +5,7 @@ class HomeChatsModel{
   final bool lastMessagedMe;
   final DateTime lastMessaged;
   final String imageUrl;
+  final String chatId;
 
   HomeChatsModel({
     required this.id,
@@ -13,5 +14,6 @@ class HomeChatsModel{
     required this.lastMessagedMe,
     required this.lastMessaged,
     required this.imageUrl,
+    required this.chatId,
   });
 }

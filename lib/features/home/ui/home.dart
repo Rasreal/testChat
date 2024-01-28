@@ -3,6 +3,7 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:test_chat/features/home/ui/chats_tile.dart";
 import "package:test_chat/styles/text_styles.dart";
 
+import "../../chat/ui/chat_page.dart";
 import "../bloc/home_bloc.dart";
 import "../model/home_chats_model.dart";
 
@@ -63,14 +64,15 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               body: ListView.builder(
-                  itemCount: searchController.text.isEmpty ? successState.chats.length+1 : filteredChats.length+1,
+                  itemCount: searchController.text.isEmpty
+                      ? successState.chats.length + 1
+                      : filteredChats.length + 1,
                   itemBuilder: (context, index) {
-
-                    if(index == 0){
+                    if (index == 0) {
                       return Column(
                         children: [
                           Container(
-                            height: MediaQuery.of(context).size.height*0.079,
+                            height: MediaQuery.of(context).size.height * 0.079,
                             margin: EdgeInsets.only(bottom: 10),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
@@ -84,13 +86,14 @@ class _HomePageState extends State<HomePage> {
                                   hintText: "Поиск",
                                   prefixIcon: Icon(Icons.search),
                                   filled: true,
-                                  fillColor: Color(0xFFEDF2F6), // Grey-blue color
+                                  fillColor:
+                                      Color(0xFFEDF2F6), // Grey-blue color
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(16.0),
                                     borderSide: BorderSide.none,
                                   ),
                                 ),
-                                onTapOutside: (a){
+                                onTapOutside: (a) {
                                   searchFocusNode.unfocus();
                                 },
                                 onChanged: (value) {
@@ -106,7 +109,20 @@ class _HomePageState extends State<HomePage> {
                         ],
                       );
                     }
-                    return ChatTile(chatInfo: searchController.text.isEmpty ? successState.chats[index-1] : filteredChats[index-1]);
+                    return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ChatPage(
+                                        chatID: successState
+                                            .chats[index - 1].chatId,
+                                      )));
+                        },
+                        child: ChatTile(
+                            chatInfo: searchController.text.isEmpty
+                                ? successState.chats[index - 1]
+                                : filteredChats[index - 1]));
                   }),
             );
           case HomeLoadedErrorState:
