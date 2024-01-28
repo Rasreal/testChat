@@ -14,10 +14,12 @@ import '../../../styles/text_styles.dart';
 import '../model/chat_message_model.dart';
 
 class ChatPage extends StatefulWidget {
-  ChatPage({super.key, required this.chatID});
+  ChatPage({super.key, required this.chatID, required this.fName, required this.lName});
 
 
   final String chatID;
+  final String fName;
+  final String lName;
   @override
   _ChatPageState createState() => _ChatPageState();
 }
@@ -53,7 +55,7 @@ class _ChatPageState extends State<ChatPage> {
               height: 50,
               child: CircleAvatar(
                 backgroundColor: Colors.pinkAccent,
-                child: Text("ФИ"),
+                child: Text("${widget.fName[0]}${widget.lName[0]}", style: nameStyle,),
               ),
             ),
             const SizedBox(
@@ -64,7 +66,7 @@ class _ChatPageState extends State<ChatPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "ФИ",
+            "${widget.fName} ${widget.lName}",
                   style: nameStyle.copyWith(fontSize: 16),
                 ),
                 Text(

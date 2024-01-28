@@ -109,20 +109,23 @@ class _HomePageState extends State<HomePage> {
                         ],
                       );
                     }
-                    return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ChatPage(
-                                        chatID: successState
-                                            .chats[index - 1].chatId,
-                                      )));
-                        },
-                        child: ChatTile(
-                            chatInfo: searchController.text.isEmpty
-                                ? successState.chats[index - 1]
-                                : filteredChats[index - 1]));
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChatPage(
+                                  lName: successState.chats[index - 1].lName,
+                                  fName: successState.chats[index - 1].fName,
+                                  chatID: successState
+                                      .chats[index - 1].chatId,
+                                )));
+                      },
+                      child: ChatTile(
+                          chatInfo: searchController.text.isEmpty
+                              ? successState.chats[index - 1]
+                              : filteredChats[index - 1]),
+                    );
                   }),
             );
           case HomeLoadedErrorState:
